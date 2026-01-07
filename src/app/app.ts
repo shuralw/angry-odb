@@ -13,6 +13,8 @@ export class App {
   protected readonly imageSrc = '/odb_default.png';
   protected readonly angryImageSrc = '/odb_angry.png';
 
+  private readonly overlayVisible = signal(false);
+
   private readonly specialIndex = Math.floor(Math.random() * this.gridSize * this.gridSize);
   protected readonly specialCoord = {
     row: Math.floor(this.specialIndex / this.gridSize),
@@ -27,6 +29,10 @@ export class App {
     const next = new Set(this.revealed());
     next.add(key);
     this.revealed.set(next);
+
+    if (this.isSpecial(row, col)) {
+      this.overlayVisible.set(true);
+    }
   }
 
   protected isSpecial(row: number, col: number): boolean {
@@ -40,6 +46,10 @@ export class App {
   protected imageFor(row: number, col: number): string {
     const specialRevealed = this.isSpecial(row, col) && this.isRevealed(row, col);
     return specialRevealed ? this.angryImageSrc : this.imageSrc;
+  }
+
+  protected overlayShown(): boolean {
+    return this.overlayVisible();
   }
 
   public constructor() {
