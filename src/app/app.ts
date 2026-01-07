@@ -7,8 +7,8 @@ import { Component, signal } from '@angular/core';
   styleUrl: './app.scss'
 })
 export class App {
-  protected readonly imageSrc = '/odb_default.png';
-  protected readonly angryImageSrc = '/odb_angry.png';
+  protected readonly imageSrc = 'odb_default.png';
+  protected readonly angryImageSrc = 'odb_angry.png';
 
   private readonly selectedGridSize = signal<number | null>(null);
   private readonly gridSize = signal(0);
