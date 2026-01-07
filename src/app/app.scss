@@ -26,8 +26,7 @@ h1 {
 .cell {
 	width: 64px;
 	height: 64px;
-	border: 1px solid #ddd;
-	background: #f6f6f6;
+	background: transparent;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -37,7 +36,8 @@ h1 {
 .cell img {
 	width: 100%;
 	height: 100%;
-	object-fit: cover;
+	object-fit: contain; /* skaliert vollständig, ohne Zuschnitt */
+	object-position: center; /* mittig ausrichten */
 	image-rendering: pixelated;
 }
 
