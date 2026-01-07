@@ -43,8 +43,16 @@ h1 {
 	image-rendering: pixelated;
 }
 
-.cell.special.revealed img {
+.cell.revealed:not(.special) img {
 	animation: spinUp 0.9s ease-out forwards;
+}
+
+.cell.special.revealed {
+	z-index: 10;
+}
+
+.cell.special.revealed img {
+	animation: riseAndFocus 0.9s ease-out forwards;
 }
 
 @keyframes spinUp {
@@ -59,6 +67,21 @@ h1 {
 	100% {
 		transform: scale(0.85) rotate(360deg) translateY(-120%);
 		opacity: 0;
+	}
+}
+
+@keyframes riseAndFocus {
+	0% {
+		transform: scale(1.18) translateY(0);
+		opacity: 1;
+	}
+	60% {
+		transform: scale(1.5) translateY(-6%);
+		opacity: 1;
+	}
+	100% {
+		transform: scale(1.6) translateY(-10%);
+		opacity: 1;
 	}
 }
 

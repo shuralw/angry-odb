@@ -10,7 +10,7 @@
           [class.revealed]="isRevealed(rIndex, cIndex)"
           (click)="reveal(rIndex, cIndex)"
           [attr.data-coord]="'(' + rIndex + ',' + cIndex + ')'">
-          <img [src]="imageSrc" alt="Ojisan Kachel" />
+          <img [src]="imageFor(rIndex, cIndex)" alt="Ojisan Kachel" />
         </div>
       }
     }

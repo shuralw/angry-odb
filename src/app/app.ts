@@ -11,6 +11,7 @@ export class App {
   protected readonly rows = Array.from({ length: this.gridSize });
   protected readonly cols = Array.from({ length: this.gridSize });
   protected readonly imageSrc = '/odb_default.png';
+  protected readonly angryImageSrc = '/odb_angry.png';
 
   private readonly specialIndex = Math.floor(Math.random() * this.gridSize * this.gridSize);
   protected readonly specialCoord = {
@@ -34,6 +35,11 @@ export class App {
 
   protected isRevealed(row: number, col: number): boolean {
     return this.revealed().has(`${row}-${col}`);
+  }
+
+  protected imageFor(row: number, col: number): string {
+    const specialRevealed = this.isSpecial(row, col) && this.isRevealed(row, col);
+    return specialRevealed ? this.angryImageSrc : this.imageSrc;
   }
 
   public constructor() {
