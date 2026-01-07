@@ -4,7 +4,12 @@
   <div class="board">
     @for (r of rows; track $index; let rIndex = $index) {
       @for (c of cols; track $index; let cIndex = $index) {
-        <div class="cell" [attr.data-coord]="'(' + rIndex + ',' + cIndex + ')'">
+        <div
+          class="cell"
+          [class.special]="isSpecial(rIndex, cIndex)"
+          [class.revealed]="isRevealed(rIndex, cIndex)"
+          (click)="reveal(rIndex, cIndex)"
+          [attr.data-coord]="'(' + rIndex + ',' + cIndex + ')'">
           <img [src]="imageSrc" alt="Ojisan Kachel" />
         </div>
       }

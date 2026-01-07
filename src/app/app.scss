@@ -1,4 +1,3 @@
-
 .main {
 	min-height: 100vh;
 	display: flex;
@@ -18,8 +17,8 @@ h1 {
 
 .board {
 	display: grid;
-	grid-template-columns: repeat(9, 64px);
-	grid-auto-rows: 64px;
+	grid-template-columns: repeat(9, 80px);
+	grid-auto-rows: 80px;
 	gap: 0;
 }
 
@@ -31,14 +30,36 @@ h1 {
 	align-items: center;
 	justify-content: center;
 	overflow: hidden;
+	cursor: pointer;
 }
 
 .cell img {
 	width: 100%;
 	height: 100%;
-	object-fit: contain; /* skaliert vollständig, ohne Zuschnitt */
-	object-position: center; /* mittig ausrichten */
+	object-fit: cover;
+	object-position: center;
+	transform: scale(1.18);
+	transform-origin: center;
 	image-rendering: pixelated;
+}
+
+.cell.special.revealed img {
+	animation: spinUp 0.9s ease-out forwards;
+}
+
+@keyframes spinUp {
+	0% {
+		transform: scale(1) rotate(0deg) translateY(0);
+		opacity: 1;
+	}
+	50% {
+		transform: scale(1.05) rotate(180deg) translateY(-20%);
+		opacity: 1;
+	}
+	100% {
+		transform: scale(0.85) rotate(360deg) translateY(-120%);
+		opacity: 0;
+	}
 }
 
 .hint {
