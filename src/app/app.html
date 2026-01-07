@@ -1,24 +1,35 @@
 <main class="main">
-  <div class="overlay" [class.show]="overlayShown()">
-    <img [src]="angryImageSrc" alt="Ojisan Overlay" />
-  </div>
+  @if (!isGameStarted()) {
+    <div class="selector">
+      <h1>Angry Ojisan – Raster-Größe wählen</h1>
+      <div class="options">
+        <button (click)="startGame(3)" class="size-btn">3×3</button>
+        <button (click)="startGame(6)" class="size-btn">6×6</button>
+        <button (click)="startGame(9)" class="size-btn">9×9</button>
+      </div>
+    </div>
+  } @else {
 
-  <h1>Angry Ojisan – 9x9 Raster</h1>
+    <div class="overlay" [class.show]="overlayShown()">
+      <img [src]="angryImageSrc" alt="Ojisan Overlay" />
+    </div>
 
-  <div class="board">
-    @for (r of rows; track $index; let rIndex = $index) {
-      @for (c of cols; track $index; let cIndex = $index) {
-        <div
-          class="cell"
-          [class.special]="isSpecial(rIndex, cIndex)"
-          [class.revealed]="isRevealed(rIndex, cIndex)"
-          (click)="reveal(rIndex, cIndex)"
-          [attr.data-coord]="'(' + rIndex + ',' + cIndex + ')'">
-          <img [src]="imageSrc" alt="Ojisan Kachel" />
-        </div>
+    <h1>Angry Ojisan</h1>
+
+    <div class="board" [style.--grid-size]="cols().length">
+      @for (r of rows(); track $index; let rIndex = $index) {
+        @for (c of cols(); track $index; let cIndex = $index) {
+          <div
+            class="cell"
+            [class.special]="isSpecial(rIndex, cIndex)"
+            [class.revealed]="isRevealed(rIndex, cIndex)"
+            (click)="reveal(rIndex, cIndex)"
+            [attr.data-coord]="'(' + rIndex + ',' + cIndex + ')'">
+            <img [src]="imageSrc" alt="Ojisan Kachel" />
+          </div>
+        }
       }
-    }
-  </div>
+    </div>
 
-  <p class="hint">Lege die Bilddatei in angry-odb/public/odb_default_v2.png.</p>
-</main>
+    <p class="hint">Lege die Bilddatei in angry-odb/public/odb_default.png.</p>
+  }

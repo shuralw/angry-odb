@@ -7,19 +7,35 @@ import { Component, signal } from '@angular/core';
   styleUrl: './app.scss'
 })
 export class App {
-  protected readonly gridSize = 9;
-  protected readonly rows = Array.from({ length: this.gridSize });
-  protected readonly cols = Array.from({ length: this.gridSize });
   protected readonly imageSrc = '/odb_default.png';
   protected readonly angryImageSrc = '/odb_angry.png';
 
+  private readonly selectedGridSize = signal<number | null>(null);
+  private readonly gridSize = signal(0);
+  protected readonly rows = signal<number[]>([]);
+  protected readonly cols = signal<number[]>([]);
   private readonly overlayVisible = signal(false);
 
-  private readonly specialIndex = Math.floor(Math.random() * this.gridSize * this.gridSize);
-  protected readonly specialCoord = {
-    row: Math.floor(this.specialIndex / this.gridSize),
-    col: this.specialIndex % this.gridSize
-  };
+  protected readonly specialCoord = signal<{ row: number; col: number } | null>(null);
+
+  protected startGame(size: number): void {
+    this.selectedGridSize.set(size);
+    this.gridSize.set(size);
+    this.rows.set(Array.from({ length: size }));
+    this.cols.set(Array.from({ length: size }));
+
+    const specialIndex = Math.floor(Math.random() * size * size);
+    const coord = {
+      row: Math.floor(specialIndex / size),
+      col: specialIndex % size
+    };
+    this.specialCoord.set(coord);
+    console.log(`Special tile at row ${coord.row}, col ${coord.col}`);
+  }
+
+  protected isGameStarted(): boolean {
+    return this.selectedGridSize() !== null;
+  }
 
   private readonly revealed = signal<Set<string>>(new Set());
 
@@ -36,7 +52,8 @@ export class App {
   }
 
   protected isSpecial(row: number, col: number): boolean {
-    return row === this.specialCoord.row && col === this.specialCoord.col;
+    const coord = this.specialCoord();
+    return coord !== null && row === coord.row && col === coord.col;
   }
 
   protected isRevealed(row: number, col: number): boolean {
@@ -47,7 +64,5 @@ export class App {
     return this.overlayVisible();
   }
 
-  public constructor() {
-    console.log(`Special tile at row ${this.specialCoord.row}, col ${this.specialCoord.col}`);
-  }
+
 }

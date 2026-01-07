@@ -9,6 +9,38 @@
 	box-sizing: border-box;
 }
 
+.selector {
+	text-align: center;
+}
+
+.selector h1 {
+	font-size: 28px;
+	margin-bottom: 32px;
+}
+
+.options {
+	display: flex;
+	gap: 16px;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.size-btn {
+	padding: 12px 24px;
+	font-size: 18px;
+	font-weight: 600;
+	border: 2px solid #333;
+	background: #fff;
+	cursor: pointer;
+	border-radius: 4px;
+	transition: all 0.2s ease;
+}
+
+.size-btn:hover {
+	background: #333;
+	color: #fff;
+}
+
 .overlay {
 	position: fixed;
 	inset: 0;
@@ -43,7 +75,8 @@ h1 {
 
 .board {
 	display: grid;
-	grid-template-columns: repeat(9, 80px);
+	--grid-size: 9; /* default, wird via inline style überschrieben */
+	grid-template-columns: repeat(var(--grid-size), 80px);
 	grid-auto-rows: 80px;
 	gap: 0;
 }
