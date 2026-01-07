@@ -43,11 +43,6 @@ export class App {
     return this.revealed().has(`${row}-${col}`);
   }
 
-  protected imageFor(row: number, col: number): string {
-    const specialRevealed = this.isSpecial(row, col) && this.isRevealed(row, col);
-    return specialRevealed ? this.angryImageSrc : this.imageSrc;
-  }
-
   protected overlayShown(): boolean {
     return this.overlayVisible();
   }

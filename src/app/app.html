@@ -1,6 +1,6 @@
 <main class="main">
   <div class="overlay" [class.show]="overlayShown()">
-    <img [src]="angryImageSrc" alt="Ojisan Angry" />
+    <img [src]="angryImageSrc" alt="Ojisan Overlay" />
   </div>
 
   <h1>Angry Ojisan – 9x9 Raster</h1>
@@ -14,7 +14,7 @@
           [class.revealed]="isRevealed(rIndex, cIndex)"
           (click)="reveal(rIndex, cIndex)"
           [attr.data-coord]="'(' + rIndex + ',' + cIndex + ')'">
-          <img [src]="imageFor(rIndex, cIndex)" alt="Ojisan Kachel" />
+          <img [src]="imageSrc" alt="Ojisan Kachel" />
         </div>
       }
     }
