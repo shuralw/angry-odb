@@ -110,6 +110,33 @@ h1 {
     animation: spinUp 0.9s ease-out forwards;
 }
 
+.restart-wrap {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    pointer-events: none;
+    padding-bottom: 32px;
+}
+
+.restart-btn {
+    pointer-events: auto;
+    background: #111;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+    cursor: pointer;
+}
+
+.restart-btn:hover {
+    filter: brightness(1.1);
+}
+
 @keyframes spinUp {
     0% {
         transform: scale(1) rotate(0deg) translateY(0);

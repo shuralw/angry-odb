@@ -28,4 +28,10 @@
         }
       }
     </div>
+
+    @if (isRestartVisible()) {
+      <div class="restart-wrap">
+        <button class="restart-btn" (click)="restart()">Neustart</button>
+      </div>
+    }
   }

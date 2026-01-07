@@ -15,6 +15,9 @@ export class App {
   protected readonly rows = signal<number[]>([]);
   protected readonly cols = signal<number[]>([]);
   private readonly overlayVisible = signal(false);
+  private readonly gameOver = signal(false);
+  private readonly restartVisible = signal(false);
+  private restartTimer: any = null;
 
   protected readonly specialCoord = signal<{ row: number; col: number } | null>(null);
 
@@ -40,6 +43,7 @@ export class App {
   private readonly revealed = signal<Set<string>>(new Set());
 
   protected reveal(row: number, col: number): void {
+    if (this.gameOver()) return;
     const key = `${row}-${col}`;
     if (this.revealed().has(key)) return;
     const next = new Set(this.revealed());
@@ -48,6 +52,9 @@ export class App {
 
     if (this.isSpecial(row, col)) {
       this.overlayVisible.set(true);
+      this.gameOver.set(true);
+      if (this.restartTimer) clearTimeout(this.restartTimer);
+      this.restartTimer = setTimeout(() => this.restartVisible.set(true), 3000);
     }
   }
 
@@ -62,6 +69,25 @@ export class App {
 
   protected overlayShown(): boolean {
     return this.overlayVisible();
+  }
+
+  protected isRestartVisible(): boolean {
+    return this.restartVisible();
+  }
+
+  protected restart(): void {
+    // Clear timers and reset signals
+    if (this.restartTimer) clearTimeout(this.restartTimer);
+    this.overlayVisible.set(false);
+    this.restartVisible.set(false);
+    this.gameOver.set(false);
+    this.revealed.set(new Set());
+    // go back to selection screen
+    this.selectedGridSize.set(null);
+    this.gridSize.set(0);
+    this.rows.set([]);
+    this.cols.set([]);
+    this.specialCoord.set(null);
   }
 
 
