@@ -1,151 +1,160 @@
 .main {
-	min-height: 100vh;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	gap: 12px;
-	padding: 16px;
-	box-sizing: border-box;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 16px;
+    box-sizing: border-box;
+    background-image: url('../../public/background.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 .selector {
-	text-align: center;
+    text-align: center;
 }
 
 .selector h1 {
-	font-size: 28px;
-	margin-bottom: 32px;
+    font-size: 28px;
+    margin-bottom: 32px;
 }
 
 .options {
-	display: flex;
-	gap: 16px;
-	justify-content: center;
-	flex-wrap: wrap;
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .size-btn {
-	padding: 12px 24px;
-	font-size: 18px;
-	font-weight: 600;
-	border: 2px solid #333;
-	background: #fff;
-	cursor: pointer;
-	border-radius: 4px;
-	transition: all 0.2s ease;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: 600;
+    border: 2px solid #333;
+    background: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s ease;
 }
 
 .size-btn:hover {
-	background: #333;
-	color: #fff;
+    background: #333;
+    color: #fff;
 }
 
 .overlay {
-	position: fixed;
-	inset: 0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	pointer-events: none;
-	z-index: 20;
-	opacity: 0;
-	transition: opacity 0.2s ease;
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 20;
+    opacity: 0;
+    transition: opacity 0.2s ease;
 }
 
 .overlay img {
-	width: 100vw;
-	max-width: 100vw;
-	animation: none;
+    width: 100vw;
+    max-width: 100vw;
+    animation: none;
 }
 
 .overlay.show {
-	opacity: 1;
+    opacity: 1;
 }
 
 .overlay.show img {
-	animation: overlayGrow 0.7s ease-out forwards;
+    animation: overlayGrow 0.7s ease-out forwards;
 }
 
 h1 {
-	margin: 0 0 8px 0;
-	font-size: 20px;
-	font-weight: 600;
+    margin: 0 0 8px 0;
+    font-size: 20px;
+    font-weight: 600;
 }
 
 .board {
-	display: grid;
-	--grid-size: 9; /* default, wird via inline style überschrieben */
-	grid-template-columns: repeat(var(--grid-size), 80px);
-	grid-auto-rows: 80px;
-	gap: 0;
+    display: grid;
+    --grid-size: 9; /* default, wird via inline style überschrieben */
+    width: 82vw; /* ~30% größer als 63vw */
+    height: 82vw;
+    grid-template-columns: repeat(var(--grid-size), 1fr);
+    grid-auto-rows: calc(82vw / var(--grid-size));
+    gap: 0;
 }
 
 .cell {
-	width: 80px;
-	height: 80px;
-	background: transparent;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	overflow: hidden;
-	cursor: pointer;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: pointer;
 }
 
 .cell img {
-	width: 60px;
-	max-width: 80px;
-	object-fit: cover;
-	object-position: center;
-	transform: scale(1.18);
-	transform-origin: center;
-	image-rendering: pixelated;
+    width: 68%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transform: scale(1.18);
+    transform-origin: center;
+    image-rendering: pixelated;
 }
 
 .cell.revealed img {
-	animation: spinUp 0.9s ease-out forwards;
+    animation: spinUp 0.9s ease-out forwards;
 }
 
 @keyframes spinUp {
-	0% {
-		transform: scale(1) rotate(0deg) translateY(0);
-		opacity: 1;
-	}
-	50% {
-		transform: scale(1.05) rotate(180deg) translateY(-20%);
-		opacity: 1;
-	}
-	100% {
-		transform: scale(0.85) rotate(360deg) translateY(-120%);
-		opacity: 0;
-	}
+    0% {
+        transform: scale(1) rotate(0deg) translateY(0);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.05) rotate(180deg) translateY(-20%);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(0.85) rotate(360deg) translateY(-120%);
+        opacity: 0;
+    }
 }
 
 @keyframes riseAndFocus {
-	0% {
-		transform: scale(1.18) translateY(0);
-		opacity: 1;
-	}
-	60% {
-		transform: scale(1.5) translateY(-6%);
-		opacity: 1;
-	}
-	100% {
-		transform: scale(1.6) translateY(-10%);
-		opacity: 1;
-	}
+    0% {
+        transform: scale(1.18) translateY(0);
+        opacity: 1;
+    }
+
+    60% {
+        transform: scale(1.5) translateY(-6%);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1.6) translateY(-10%);
+        opacity: 1;
+    }
 }
 
 @keyframes overlayGrow {
-	0% {
-		transform: scale(0.2);
-	}
-	100% {
-		transform: scale(0.9);
-	}
+    0% {
+        transform: scale(0.2);
+    }
+
+    100% {
+        transform: scale(0.9);
+    }
 }
 
 .hint {
-	color: #666;
-	font-size: 12px;
+    color: #666;
+    font-size: 12px;
 }

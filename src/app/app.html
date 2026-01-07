@@ -1,7 +1,7 @@
 <main class="main">
   @if (!isGameStarted()) {
     <div class="selector">
-      <h1>Angry Ojisan – Raster-Größe wählen</h1>
+      <h1>Spielbrett-Größe wählen</h1>
       <div class="options">
         <button (click)="startGame(3)" class="size-btn">3×3</button>
         <button (click)="startGame(6)" class="size-btn">6×6</button>
@@ -13,8 +13,6 @@
     <div class="overlay" [class.show]="overlayShown()">
       <img [src]="angryImageSrc" alt="Ojisan Overlay" />
     </div>
-
-    <h1>Angry Ojisan</h1>
 
     <div class="board" [style.--grid-size]="cols().length">
       @for (r of rows(); track $index; let rIndex = $index) {
@@ -30,6 +28,4 @@
         }
       }
     </div>
-
-    <p class="hint">Lege die Bilddatei in angry-odb/public/odb_default.png.</p>
   }
