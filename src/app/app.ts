@@ -54,7 +54,7 @@ export class App {
       this.overlayVisible.set(true);
       this.gameOver.set(true);
       if (this.restartTimer) clearTimeout(this.restartTimer);
-      this.restartTimer = setTimeout(() => this.restartVisible.set(true), 3000);
+      this.restartTimer = setTimeout(() => this.restartVisible.set(true), 1500);
     }
   }
 

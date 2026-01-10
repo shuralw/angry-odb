@@ -7,7 +7,7 @@
     gap: 12px;
     padding: 16px;
     box-sizing: border-box;
-    background-image: url('../../public/background.jpeg');
+    background-image: url('../../public/background.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -80,10 +80,10 @@ h1 {
 .board {
     display: grid;
     --grid-size: 9; /* default, wird via inline style überschrieben */
-    width: 82vw; /* ~30% größer als 63vw */
-    height: 82vw;
+    width: 95vw; /* ~30% größer als 63vw */
+    height: 95vw;
     grid-template-columns: repeat(var(--grid-size), 1fr);
-    grid-auto-rows: calc(82vw / var(--grid-size));
+    grid-auto-rows: calc(95vw / var(--grid-size));
     gap: 0;
 }
 
