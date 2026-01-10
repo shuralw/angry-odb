@@ -8,7 +8,7 @@ frontend:
       commands:
         - npm run build
   artifacts:
-    baseDirectory: dist/angry-odb
+    baseDirectory: dist/angry-odb/browser
     files:
       - '**/*'
   cache:
